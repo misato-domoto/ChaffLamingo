@@ -1,0 +1,37 @@
+# docker compose up           => 本番想定 (Dockerfile, standalone build)
+# docker compose --profile dev up web-dev
+#                              => 開発用ホットリロード (Dockerfile.dev)
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: chafflamingo:latest
+    container_name: chafflamingo-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    restart: unless-stopped
+
+  web-dev:
+    profiles: ["dev"]
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: chafflamingo:dev
+    container_name: chafflamingo-web-dev
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+      - WATCHPACK_POLLING=true
+    volumes:
+      - .:/app
+      # node_modules はホスト側を上書きせず、コンテナの匿名ボリュームを使う
+      - /app/node_modules
+      - /app/.next
+    command: ["bun", "run", "dev"]

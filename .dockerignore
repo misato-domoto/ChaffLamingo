@@ -1,0 +1,37 @@
+# VCS
+.git
+.gitignore
+
+# Node / Next
+node_modules
+.next
+out
+build
+coverage
+*.tsbuildinfo
+next-env.d.ts
+
+# 環境ファイル
+.env*
+!.env.example
+
+# エディタ / OS
+.vscode
+.idea
+.DS_Store
+
+# devcontainer はビルドコンテキストから除外
+.devcontainer
+
+# 壊れた残骸
+chafflamingo-dev
+**/.node_modules_dead_*
+
+# Docker 関連自身
+Dockerfile
+Dockerfile.dev
+docker-compose.yml
+.dockerignore
+
+# README / ドキュメント
+README.md

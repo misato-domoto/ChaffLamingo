@@ -4,6 +4,10 @@
 /node_modules
 /.pnp
 .pnp.*
+
+# 壊れた bun install 残骸 (手動で削除してください)
+/chafflamingo-dev/
+**/.node_modules_dead_*/
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
