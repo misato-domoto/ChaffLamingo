@@ -22,6 +22,9 @@
   --flamingo-tint: #ffeef3;
   --flamingo-deep: #d63a6f;
 
+  --shuffle: #4cabd8;
+  --shuffle-deep: #479dc5;
+
   --radius: 1rem;
 }
 
@@ -42,6 +45,9 @@
   --color-flamingo-soft: var(--flamingo-soft);
   --color-flamingo-tint: var(--flamingo-tint);
   --color-flamingo-deep: var(--flamingo-deep);
+
+  --color-shuffle: var(--shuffle);
+  --color-shuffle-deep: var(--shuffle-deep);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
