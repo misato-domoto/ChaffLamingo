@@ -1,0 +1,13 @@
+# 開発用イメージ: ホットリロードを有効にして bun dev を実行
+FROM oven/bun:1.1-alpine
+WORKDIR /app
+
+ENV NEXT_TELEMETRY_DISABLED=1
+
+COPY package.json bun.lock* ./
+RUN bun install
+
+# ソースは compose 側で bind mount するので COPY は不要
+EXPOSE 3000
+
+CMD ["bun", "run", "dev"]
