@@ -21,7 +21,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dices, Star, Settings } from "lucide-react";
+import { Dices, Star, Shuffle, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -37,6 +37,7 @@ type NavItem = {
 // 上段ナビ (ロゴの下)
 const TOP_ITEMS: NavItem[] = [
   { href: "/", label: "クイックシャッフル", Icon: Dices },
+  { href: "/shuffles", label: "シャッフル", Icon: Shuffle },
   { href: "/favorites", label: "お気に入り", Icon: Star },
 ];
 
