@@ -42,7 +42,6 @@ const TOP_ITEMS: NavItem[] = [
 
 // 下段ナビ (フッタ寄り)
 const BOTTOM_ITEMS: NavItem[] = [
-  { href: "/members", label: "メンバー", Icon: FlamingoIcon },
   { href: "/settings", label: "設定", Icon: Settings },
 ];
 
@@ -195,23 +194,5 @@ export function Sidebar() {
         {BOTTOM_ITEMS.map(renderItem)}
       </nav>
     </aside>
-  );
-}
-
-/**
- * フラミンゴアイコンの placeholder。
- * 後でブランド SVG (例: public/icons/flamingo.svg) ができたら、
- * lucide ではなくそちらに差し替える想定。
- */
-function FlamingoIcon({ className }: IconProps) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-      aria-hidden
-    >
-      <path d="M15 2c-1.7 0-3 1.3-3 3 0 .9.4 1.7 1 2.2v.3c-.6.4-1 1-1 1.8v3.4l-2.6 2.6-2.4-1c-.5-.2-1 .3-.8.8L7 17.5l2.4 4c.2.3.5.5.9.5h1.7c.5 0 1-.5 1-1v-1c0-.5-.2-1-.5-1.4L11 17l2-3.5h2v8c0 .6.4 1 1 1s1-.4 1-1V7.4c.6-.5 1-1.4 1-2.4 0-1.7-1.3-3-3-3z" />
-    </svg>
   );
 }
