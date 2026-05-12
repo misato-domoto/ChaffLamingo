@@ -57,12 +57,12 @@ public/
 
 ### コンポーネントの置き場所の判断
 
-| 置き場所 | 何を置く |
-|---|---|
-| `components/ui/` | Button, Input, Card など、どの画面でも使う汎用パーツ |
-| `components/layout/` | Sidebar, Header など、レイアウト構造を担うもの |
-| `components/<画面名>/` | その画面でしか使わない専用部品 |
-| `app/(main)/<画面名>/page.tsx` | 状態とロジックを持つコンテナ |
+| 置き場所                       | 何を置く                                             |
+| ------------------------------ | ---------------------------------------------------- |
+| `components/ui/`               | Button, Input, Card など、どの画面でも使う汎用パーツ |
+| `components/layout/`           | Sidebar, Header など、レイアウト構造を担うもの       |
+| `components/<画面名>/`         | その画面でしか使わない専用部品                       |
+| `app/(main)/<画面名>/page.tsx` | 状態とロジックを持つコンテナ                         |
 
 迷ったら `components/<画面名>/` に置く。3画面以上で使われていることが分かったら `components/ui/` に昇格させる ("Rule of Three")。
 
@@ -74,6 +74,7 @@ public/
 - 表示部品は props を受け取って描画するだけにする (= プレゼンテーション)
 
 こうすると、
+
 - ロジックを Zustand / Redux / サーバーに移す時、`page.tsx` だけ書き換えれば済む
 - 部品は単独でテストできるようになる
 
