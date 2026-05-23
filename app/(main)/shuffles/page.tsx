@@ -20,6 +20,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 // 仮データ。後で API/DB に差し替える前提。
 const INITIAL_MEMBERS: Member[] = [
@@ -74,7 +75,7 @@ export default function ShufflesPage() {
     );
   };
 
-  const [open, setOpen] = useState(false);
+  const [activeDialog, setActiveDialog] = useState<"card" | "shuffle" | null>(null)
 
   // ── 描画 ───────────────────────────────────────────────────────
   return (
@@ -128,7 +129,9 @@ export default function ShufflesPage() {
 
         <div className="flex flex-wrap items-center gap-6">
           {/* レイアウト1 */}
-          <Card className="relative h-41 w-70">
+          <Card className="relative h-41 w-70"
+                onClick={() => setActiveDialog("card")}
+          >
             <CardContent className="p-0">
               <div className="absolute top-2 right-2">
                 <Star className="h-6 w-6 text-[var(--muted-foreground)]" />
@@ -164,14 +167,17 @@ export default function ShufflesPage() {
           {/* メインアクション */}
           <button
             type="button"
-            onClick={() => setOpen(true)}
+            onClick={() => setActiveDialog("shuffle")}
             className="ml-auto h-32 w-32 place-items-center rounded-full bg-[var(--shuffle)] text-center leading-tight text-white shadow-lg shadow-[var(--shuffle)]/30 transition-colors hover:bg-[var(--shuffle-deep)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--shuffle)]/30 disabled:cursor-not-allowed disabled:shadow-none"
           >
             <Shuffle className="h-6 w-6" />
             <span className="text-base font-bold ">シャッフル</span>
           </button>
           {/* シャッフル結果ダイアログ */}
-          <Dialog open={open} onOpenChange={setOpen}>
+          <Dialog 
+            open={activeDialog === "shuffle"}
+            onOpenChange={(open) => !open && setActiveDialog(null)}
+          >
             <DialogContent className="w-250 h-138 max-w-none max-h-none sm:max-w-none p-0 border-0 bg-transparent shadow-none overflow-visible [&>button]:hidden">
 
               {/* グラデーション枠 */}
@@ -211,8 +217,38 @@ export default function ShufflesPage() {
                   </div>
                 </div>
               </div>
-
             </DialogContent>
+          </Dialog>
+
+          {/* レイアウト選択確認ダイアログ */}
+          <Dialog 
+            open={activeDialog === "card"}
+            onOpenChange={(open) => !open && setActiveDialog(null)}
+          >
+              <DialogContent className="w-100 h-50 max-w-none max-h-none sm:max-w-none p-0 border-0 bg-transparent shadow-none overflow-visible [&>button]:hidden">
+                <VisuallyHidden>
+                  <DialogTitle>選択確認ダイアログ</DialogTitle>
+                </VisuallyHidden>
+                {/* グラデーション枠 */}
+                <div className="h-full w-full rounded-xl bg-gradient-to-br from-[var(--flamingo)] via-[var(--flamingo-soft)] to-[var(--shuffle)] p-[4px]">
+                  <div className="h-full w-full rounded-xl bg-white p-8 flex flex-col items-center justify-center gap-8">
+
+                    <p className="text-[20px] font-bold text-[var(--shuffle)] text-center">
+                      このレイアウトを選択しますか？
+                    </p>
+
+                    <div className="flex gap-6">
+                      <button className="h-12 w-32 rounded-full text-[var(--shuffle)] font-bold border-2 border-[var(--shuffle)] hover:text-[var(--shuffle-deep)] hover:border-[var(--shuffle-deep)]">
+                        キャンセル
+                      </button>
+
+                      <button className="h-12 w-32 rounded-full bg-[var(--shuffle)] text-white font-bold hover:bg-[var(--shuffle-deep)]">
+                        OK
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
           </Dialog>
         </div>
       </div>
