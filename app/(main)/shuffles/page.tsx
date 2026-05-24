@@ -11,6 +11,16 @@ import { Star } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card";
 import { MemberList } from "@/components/shuffle/member-list";
 import type { Member } from "@/components/shuffle/types";
+import { Shuffle } from "lucide-react";
+
+import { Input } from "@/components/ui/input"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 // 仮データ。後で API/DB に差し替える前提。
 const INITIAL_MEMBERS: Member[] = [
@@ -29,7 +39,7 @@ const INITIAL_MEMBERS: Member[] = [
   { id: "m13", name: "佐々木 秋", selected: false },
 ];
 
-export default function ShufflePage() {
+export default function ShufflesPage() {
   // ── 状態 ───────────────────────────────────────────────────────
   const [members, setMembers] = useState<Member[]>(INITIAL_MEMBERS);
   const [search, setSearch] = useState("");
@@ -65,33 +75,35 @@ export default function ShufflePage() {
     );
   };
 
+  const [activeDialog, setActiveDialog] = useState<"card" | "shuffle" | null>(null)
+
   // ── 描画 ───────────────────────────────────────────────────────
   return (
     <main className="px-8 py-6">
-      <h1 className="mb-4 text-[32px] font-bold text-[var(--shuffle)]">
+      <h1 className="mb-4 text-xl font-bold text-[var(--shuffle)]">
         シャッフル画面
       </h1>
 
       {/* 上段: Canvas (左、伸縮) + メンバーリスト (右、280px固定) */}
       <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
-        <Card className="relative min-h-105 py-8">
+        <Card className="relative min-h-[420px] py-[26px]">
           <CardContent className="px-8">
-            <div className="mb-4 flex items-center gap-3 text-[32px] font-bold text-[var(--shuffle)]">
+            <div className="mb-4 flex items-center gap-3 text-base font-bold text-[var(--shuffle)]">
               <span>
                 0 / {selectedCount} 人
               </span>
               <div className="ml-auto flex gap-3">
                 <button
                   type="button"
-                  className="h-14 w-54 place-items-center rounded-full bg-white text-center text-[24px] font-bold border-2 border-[var(--shuffle)] text-[var(--shuffle)] transition-colors hover:text-[var(--shuffle-deep)] hover:border-[var(--shuffle-deep)] "
+                  className="px-4 py-1 items-center rounded-full bg-white text-center text-base font-bold border-2 border-[var(--shuffle)] text-[var(--shuffle)] transition-colors hover:text-[var(--shuffle-deep)] hover:border-[var(--shuffle-deep)] "
                 >
-                  レイアウト編集
+                  詳細条件設定
                 </button>
                 <button
                   type="button"
-                  className="h-14 w-54 place-items-center rounded-full bg-[var(--shuffle)] text-center text-[24px] font-bold text-white transition-colors hover:bg-[var(--shuffle-deep)] "
+                  className="px-4 py-1 items-center rounded-full bg-[var(--shuffle)] text-center text-base font-bold border-2 border-[var(--shuffle)] text-white transition-colors hover:bg-[var(--shuffle-deep)] hover:border-[var(--shuffle-deep)] "
                 >
-                  詳細条件設定
+                  レイアウト編集
                 </button>
               </div>
             </div>
@@ -110,14 +122,16 @@ export default function ShufflePage() {
       </div>
 
       {/* 下段: レイアウト選択 */}
-      <div className="mt-8">
-        <h2 className="mb-4 text-[32px] font-bold text-[var(--shuffle)]">
+      <div className="mt-2">
+        <h2 className="mb-2 text-base font-semibold text-[var(--shuffle)]">
           座席レイアウト選択
         </h2>
 
         <div className="flex flex-wrap items-center gap-6">
           {/* レイアウト1 */}
-          <Card className="relative h-41 w-70">
+          <Card className="relative h-41 w-70"
+                onClick={() => setActiveDialog("card")}
+          >
             <CardContent className="p-0">
               <div className="absolute top-2 right-2">
                 <Star className="h-6 w-6 text-[var(--muted-foreground)]" />
@@ -153,12 +167,92 @@ export default function ShufflePage() {
           {/* メインアクション */}
           <button
             type="button"
-            className="ml-auto grid h-32 w-32 place-items-center rounded-full bg-[var(--shuffle)] text-center text-base font-bold leading-tight text-white shadow-lg shadow-[var(--shuffle)]/30 transition-colors hover:bg-[var(--shuffle-deep)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--shuffle)]/30 disabled:cursor-not-allowed disabled:shadow-none"
+            onClick={() => setActiveDialog("shuffle")}
+            className="ml-auto h-32 w-32 place-items-center rounded-full bg-[var(--shuffle)] text-center leading-tight text-white shadow-lg shadow-[var(--shuffle)]/30 transition-colors hover:bg-[var(--shuffle-deep)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--shuffle)]/30 disabled:cursor-not-allowed disabled:shadow-none"
           >
-            シャッフル
+            <Shuffle className="h-6 w-6" />
+            <span className="text-base font-bold ">シャッフル</span>
           </button>
+          {/* シャッフル結果ダイアログ */}
+          <Dialog 
+            open={activeDialog === "shuffle"}
+            onOpenChange={(open) => !open && setActiveDialog(null)}
+          >
+            <DialogContent className="w-250 h-138 max-w-none max-h-none sm:max-w-none p-0 border-0 bg-transparent shadow-none overflow-visible [&>button]:hidden">
+
+              {/* グラデーション枠 */}
+              <div className="h-full w-full rounded-xl bg-gradient-to-br from-[var(--flamingo)] via-[var(--flamingo-soft)] to-[var(--shuffle)] p-[4px]">
+                <div className="h-full w-full rounded-xl bg-white overflow-hidden">
+                  <DialogHeader>
+                    <DialogTitle className="my-4 text-center text-xl font-bold text-[var(--shuffle)]">
+                      シャッフル結果
+                    </DialogTitle>
+                  </DialogHeader>
+
+                  {/* 結果プレビュー（画像のグレー部分想定） */}
+                  <div className="mx-auto w-150 h-90 rounded-2xl bg-[var(--muted-foreground)]" />
+
+                  {/* 保存ボタン */}
+                  <div className="flex justify-center">
+                    <button
+                      className="my-3 px-4 py-1 items-center rounded-full bg-[var(--shuffle)] text-center text-base font-bold text-white transition-colors hover:bg-[var(--shuffle-deep)] "
+                    >
+                      保存
+                    </button>
+                  </div>
+                  {/* URL + コピー */}
+                  <div className="flex justify-center">
+                    <div className="flex h-10 w-130 overflow-hidden rounded-full border-2 border-[var(--shuffle)]">
+                    <Input
+                      value="https://chafflamingo.com/shuffle/xxxx"
+                      readOnly
+                        className="h-full flex-1 rounded-none border-0 bg-white px-6 text-[20px] focus-visible:ring-0 focus-visible:ring-offset-0"
+                      />
+                      <button
+                        className="h-full w-15 flex items-center justify-center bg-[var(--shuffle)] text-base font-bold text-white transition-colors hover:bg-[var(--shuffle-deep)]"
+                      >
+                        コピー
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          {/* レイアウト選択確認ダイアログ */}
+          <Dialog 
+            open={activeDialog === "card"}
+            onOpenChange={(open) => !open && setActiveDialog(null)}
+          >
+              <DialogContent className="w-100 h-50 max-w-none max-h-none sm:max-w-none p-0 border-0 bg-transparent shadow-none overflow-visible [&>button]:hidden">
+                <VisuallyHidden>
+                  <DialogTitle>選択確認ダイアログ</DialogTitle>
+                </VisuallyHidden>
+                {/* グラデーション枠 */}
+                <div className="h-full w-full rounded-xl bg-gradient-to-br from-[var(--flamingo)] via-[var(--flamingo-soft)] to-[var(--shuffle)] p-[4px]">
+                  <div className="h-full w-full rounded-xl bg-white p-8 flex flex-col items-center justify-center gap-8">
+
+                    <p className="text-[20px] font-bold text-[var(--shuffle)] text-center">
+                      このレイアウトを選択しますか？
+                    </p>
+
+                    <div className="flex gap-6">
+                      <button className="h-12 w-32 rounded-full text-[var(--shuffle)] font-bold border-2 border-[var(--shuffle)] hover:text-[var(--shuffle-deep)] hover:border-[var(--shuffle-deep)]">
+                        キャンセル
+                      </button>
+
+                      <button className="h-12 w-32 rounded-full bg-[var(--shuffle)] text-white font-bold hover:bg-[var(--shuffle-deep)]">
+                        OK
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </DialogContent>
+          </Dialog>
         </div>
       </div>
     </main>
   );
+
 }
