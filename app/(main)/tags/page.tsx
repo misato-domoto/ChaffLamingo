@@ -125,7 +125,7 @@ export default function TagsPage() {
         </Card>
       </div>
 
-      {/* タグ編集ダイアログ */}
+      {/* タグ登録ポップアップ */}
       <Dialog 
         open={activeDialog === "edit"}
         onOpenChange={(open) => !open && setActiveDialog(null)}
