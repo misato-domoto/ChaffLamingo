@@ -21,7 +21,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dices, Shuffle, Pencil, UsersRound, Tags, Settings } from "lucide-react";
+import { Dices, Shuffle, Pencil, UsersRound, Tags,Album, Settings } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -41,6 +41,7 @@ const TOP_ITEMS: NavItem[] = [
   { href: "/layouts", label: "座席レイアウト", Icon: Pencil },
   { href: "/members", label: "メンバー", Icon: UsersRound },
   { href: "/tags", label: "タグ一覧", Icon: Tags },
+  { href: "/results", label: "シャッフル結果一覧", Icon: Album},
 ];
 
 
