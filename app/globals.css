@@ -24,6 +24,7 @@
 
   --shuffle: #4cabd8;
   --shuffle-deep: #479dc5;
+  --shuffle-tint: #C4E4F4;
 
   --radius: 1rem;
 }
@@ -48,6 +49,7 @@
 
   --color-shuffle: var(--shuffle);
   --color-shuffle-deep: var(--shuffle-deep);
+  --color-shuffle-tint: var(--shuffle-tint);
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
