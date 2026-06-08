@@ -29,7 +29,7 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen overflow-hidden bg-[var(--background)]">
+    <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar />
       {/* 右ペイン: 各ページの page.tsx がここに描画される。
           コンテンツが縦に溢れたときはここだけがスクロールする。 */}

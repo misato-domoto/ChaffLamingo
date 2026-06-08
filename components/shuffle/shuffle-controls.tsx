@@ -47,7 +47,7 @@ export function ShuffleControls({
     <div className="flex flex-wrap items-center gap-6">
       {/* 1テーブルあたりの人数 */}
       <div className="flex flex-col gap-2">
-        <span className="px-1 text-xs font-semibold text-[var(--flamingo)]">
+        <span className="mb-2 text-base font-semibold text-flamingo">
           1テーブルあたりの人数
         </span>
         <Card className="gap-0 py-3">
@@ -55,7 +55,7 @@ export function ShuffleControls({
             <RoundIconButton onClick={decPer} ariaLabel="人数を減らす">
               <Minus className="h-4 w-4" />
             </RoundIconButton>
-            <span className="text-2xl font-bold text-[var(--flamingo)] tabular-nums">
+            <span className="text-2xl font-bold text-flamingo tabular-nums">
               {perTable}
               <span className="ml-0.5 text-base font-semibold">人</span>
             </span>
@@ -68,7 +68,7 @@ export function ShuffleControls({
 
       {/* テーブル数 (= 何卓に分けるか) */}
       <div className="flex flex-col gap-2">
-        <span className="px-1 text-xs font-semibold text-[var(--flamingo)]">
+        <span className="mb-2 text-base font-semibold text-flamingo">
           テーブル数
         </span>
         <Card className="gap-0 py-3">
@@ -80,7 +80,7 @@ export function ShuffleControls({
             >
               <ArrowLeft className="h-4 w-4" />
             </RoundIconButton>
-            <span className="grid h-9 min-w-9 place-items-center rounded-full border-2 border-[var(--flamingo-soft)] bg-[var(--flamingo-tint)] px-2 text-sm font-bold text-[var(--flamingo-deep)] tabular-nums">
+            <span className="grid h-9 min-w-9 place-items-center rounded-full border-2 border-flamingo-soft bg-flamingo-tint px-2 text-sm font-bold text-flamingo-deep tabular-nums">
               {tableCount}
             </span>
             <RoundIconButton onClick={incTbl} ariaLabel="テーブル数を増やす">
@@ -95,7 +95,7 @@ export function ShuffleControls({
         type="button"
         onClick={onShuffle}
         disabled={!canShuffle}
-        className="ml-auto grid h-32 w-32 place-items-center rounded-full bg-[var(--flamingo)] text-center text-base font-bold leading-tight text-white shadow-lg shadow-[var(--flamingo)]/30 transition-colors hover:bg-[var(--flamingo-deep)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[var(--flamingo)]/30 disabled:cursor-not-allowed disabled:bg-[var(--flamingo-soft)] disabled:shadow-none"
+        className="ml-auto grid h-32 w-32 place-items-center rounded-full bg-flamingo text-center text-base font-bold leading-tight text-white shadow-lg shadow-(--flamingo)/30 transition-colors hover:bg-flamingo-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--flamingo)/30 disabled:cursor-not-allowed disabled:bg-flamingo-soft disabled:shadow-none"
       >
         クイック
         <br />
@@ -122,7 +122,7 @@ function RoundIconButton({
       aria-label={ariaLabel}
       onClick={onClick}
       disabled={disabled}
-      className="grid h-9 w-9 place-items-center rounded-full border-2 border-[var(--flamingo-soft)] text-[var(--flamingo)] transition-colors hover:bg-[var(--flamingo-tint)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
+      className="grid h-9 w-9 place-items-center rounded-full border-2 border-flamingo-soft text-flamingo transition-colors hover:bg-flamingo-tint disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
     >
       {children}
     </button>

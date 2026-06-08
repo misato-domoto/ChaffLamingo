@@ -1,0 +1,32 @@
+{
+  "name": "1",
+  "isFavorite": false,
+  "tables": [
+    {
+      "id": "5ad0f933-98cc-4476-a015-c2922f140316",
+      "shape": "circle",
+      "x": 654,
+      "y": 138,
+      "width": 150,
+      "height": 150,
+      "rotation": 0,
+      "name": "",
+      "tableColor": "#fde68a",
+      "chairColor": "#bbf7d0",
+      "tableBorderColor": "#9ca3af",
+      "chairBorderColor": "#9ca3af",
+      "labelColor": "#334155",
+      "chairSizeScale": 1,
+      "chairRailGap": 18,
+      "chairs": [
+        {
+          "id": "dd74f234-9d84-4695-9f1c-0c323052c7e5",
+          "angle": -90
+        }
+      ]
+    }
+  ],
+  "objects": [],
+  "createdAt": "2026-06-02T05:39:03.285Z",
+  "updatedAt": "2026-06-02T05:39:03.285Z"
+}

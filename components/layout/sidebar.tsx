@@ -21,7 +21,16 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Dices, Shuffle, Pencil, UsersRound, Tags, Settings } from "lucide-react";
+import {
+  Dices,
+  Shuffle,
+  Pencil,
+  UsersRound,
+  Tags,
+  // lucide-react@1.x には Album が無いことがあるので Image を別名で代用
+  Image as ImageIcon,
+  Settings,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -41,6 +50,7 @@ const TOP_ITEMS: NavItem[] = [
   { href: "/layouts", label: "座席レイアウト", Icon: Pencil },
   { href: "/members", label: "メンバー", Icon: UsersRound },
   { href: "/tags", label: "タグ一覧", Icon: Tags },
+  { href: "/results", label: "シャッフル結果一覧", Icon: ImageIcon },
 ];
 
 
@@ -126,7 +136,7 @@ export function Sidebar() {
           "relative z-10 grid h-12 w-12 place-items-center rounded-xl transition-colors",
           // active 時はつまみのへこみ上にアイコンが乗るので、視認性のため濃色に
           isActive
-            ? "text-[var(--foreground)]"
+            ? "text-foreground"
             : "text-white/85 hover:text-white",
         )}
       >

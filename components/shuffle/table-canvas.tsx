@@ -9,17 +9,13 @@
  *   セル内に最大化される。
  * - 席数 = perTable で固定。シャッフル前の空席状態でもレイアウトが
  *   描画されるので、人数/卓数を選ぶだけでイメージが掴める。
- *
- * グリッドの列数:
- *   1卓:           1列
- *   2-3卓:         その数だけ横一列
- *   4卓:           2x2
- *   5-6卓:         3列x2行
- *   7-9卓:         3x3
- *   10卓以上:      4列で行が増える
+ * - 椅子の描画:
+ *     - pictureUrl があれば、その画像で椅子を差し替え (clipPath で円に整形)
+ *     - 無ければ白丸 (空席は flamingo-tint 色)
+ * - メンバー名は椅子の "外側" に表示する (席のテーブル中心からの方向に沿う)。
  */
 
-import type { Member } from "./types";
+import type { Member } from "@/lib/types";
 
 type Props = {
   /** 表示するテーブル一覧 (各テーブルに割当てられたメンバー)。 */
@@ -29,9 +25,11 @@ type Props = {
 };
 
 // SVG userspace の座標 (viewBox 0..100)
-const TABLE_R = 18; // テーブル本体の半径
-const SEAT_R = 9; // 席の半径
-const SEAT_RADIUS = 36; // テーブル中心 → 席中心 の距離
+const TABLE_R = 16; // テーブル本体の半径
+const SEAT_R = 8; // 席の半径
+const SEAT_RADIUS = 34; // テーブル中心 → 席中心 の距離
+// 名前ラベルを席の外側にどれだけ離すか (SEAT_R + 余白)
+const NAME_DISTANCE = SEAT_R + 4;
 
 export function TableCanvas({ tables, perTable }: Props) {
   const count = tables.length;
@@ -69,18 +67,12 @@ export function TableCanvas({ tables, perTable }: Props) {
 
 function computeCols(n: number): number {
   if (n <= 1) return 1;
-  if (n <= 3) return n; // 横一列
-  if (n === 4) return 2; // 2x2
-  if (n <= 9) return 3; // 5,6 → 2行 / 7,8,9 → 3行
-  return 4; // 10卓以上は4列
+  if (n <= 3) return n;
+  if (n === 4) return 2;
+  if (n <= 9) return 3;
+  return 4;
 }
 
-/**
- * 1テーブル分の SVG 描画。
- * - viewBox は 0..100 の正方形。
- * - preserveAspectRatio="xMidYMid meet" により、親セルがどんな縦横比でも
- *   中央に正方形として収まる (= 円テーブルが楕円にならない)。
- */
 function SingleTable({
   members,
   perTable,
@@ -90,14 +82,14 @@ function SingleTable({
   perTable: number;
   index: number;
 }) {
-  // perTable 個の席を、テーブルの周囲に均等配置で並べる。
-  // 角度: 上 (-π/2) を起点に時計回り。
+  // perTable 個の席を、テーブルの周囲に均等配置。
+  // angle: 上 (-π/2) を起点に時計回り。
   const seats = Array.from({ length: perTable }, (_, i) => {
     const angle = (i / perTable) * Math.PI * 2 - Math.PI / 2;
     return {
+      angle,
       x: 50 + SEAT_RADIUS * Math.cos(angle),
       y: 50 + SEAT_RADIUS * Math.sin(angle),
-      // members[i] が居れば座らせる。足りなければ空席。
       member: members[i] ?? null,
     };
   });
@@ -110,7 +102,18 @@ function SingleTable({
       role="img"
       aria-label={`テーブル ${index}: ${members.length} / ${perTable} 人`}
     >
-      {/* テーブル番号 (右上に薄く) */}
+      {/* 写真を椅子内に切り抜くための clipPath を一括定義 */}
+      <defs>
+        {seats.map((seat, i) =>
+          seat.member?.pictureUrl ? (
+            <clipPath key={i} id={`clip-${index}-${seat.member.id}`}>
+              <circle cx={seat.x} cy={seat.y} r={SEAT_R} />
+            </clipPath>
+          ) : null,
+        )}
+      </defs>
+
+      {/* テーブル番号 */}
       <text
         x="98"
         y="9"
@@ -130,49 +133,98 @@ function SingleTable({
         r={TABLE_R}
         fill="var(--flamingo-tint)"
         stroke="var(--flamingo-soft)"
-        strokeWidth="1.5"
+        strokeWidth="1.2"
       />
 
-      {/* 席 (perTable 個。空席もここで描画) */}
+      {/* 席 */}
       {seats.map((seat, i) => (
-        <Seat key={i} {...seat} />
+        <Seat key={i} {...seat} tableIndex={index} />
       ))}
     </svg>
   );
 }
 
 /**
- * 1席の描画。
- * - filled (member あり): 白塗り + 名前
- * - empty                : 同色の薄い円のみ (シャッフル前 or 余席)
+ * 1席の描画 (椅子 + 外側名前)。
+ * - filled (member あり, 写真なし): 白塗りの円 + 外側に名前
+ * - filled (member あり, 写真あり): 写真を円形にクリップ + 外側に名前
+ * - empty                          : 薄いピンクの円のみ (シャッフル前 or 余席)
  */
 function Seat({
   x,
   y,
+  angle,
   member,
+  tableIndex,
 }: {
   x: number;
   y: number;
+  angle: number;
   member: Member | null;
+  tableIndex: number;
 }) {
   const filled = member !== null;
+  const hasPhoto = !!member?.pictureUrl;
+
+  // 名前の位置: 席中心から外向き方向に NAME_DISTANCE 進めた点
+  const cosA = Math.cos(angle);
+  const sinA = Math.sin(angle);
+  const nameX = x + cosA * NAME_DISTANCE;
+  const nameY = y + sinA * NAME_DISTANCE;
+
+  // テキストのアンカー: 方向に応じて切り替え (見た目を「席の外側」に揃える)
+  const textAnchor =
+    cosA > 0.3 ? "start" : cosA < -0.3 ? "end" : "middle";
+  const dominantBaseline =
+    sinA > 0.3 ? "hanging" : sinA < -0.3 ? "alphabetic" : "central";
+
   return (
-    <g transform={`translate(${x}, ${y})`}>
-      <circle
-        r={SEAT_R}
-        fill={filled ? "white" : "var(--flamingo-tint)"}
-        stroke="var(--flamingo-soft)"
-        strokeWidth="1.4"
-      />
+    <g>
+      {/* 椅子本体 */}
+      {hasPhoto ? (
+        <>
+          <image
+            href={member!.pictureUrl}
+            x={x - SEAT_R}
+            y={y - SEAT_R}
+            width={SEAT_R * 2}
+            height={SEAT_R * 2}
+            clipPath={`url(#clip-${tableIndex}-${member!.id})`}
+            preserveAspectRatio="xMidYMid slice"
+          />
+          {/* 写真の縁取り */}
+          <circle
+            cx={x}
+            cy={y}
+            r={SEAT_R}
+            fill="none"
+            stroke="var(--flamingo-soft)"
+            strokeWidth="1.2"
+          />
+        </>
+      ) : (
+        <circle
+          cx={x}
+          cy={y}
+          r={SEAT_R}
+          fill={filled ? "white" : "var(--flamingo-tint)"}
+          stroke="var(--flamingo-soft)"
+          strokeWidth="1.2"
+        />
+      )}
+
+      {/* 外側の名前ラベル */}
       {filled && (
         <text
-          textAnchor="middle"
-          dominantBaseline="central"
-          fontSize="5.5"
-          fontWeight="700"
+          x={nameX}
+          y={nameY}
+          textAnchor={textAnchor}
+          dominantBaseline={dominantBaseline}
+          fontSize="4.5"
+          fontWeight="600"
           fill="var(--flamingo-deep)"
         >
-          {member.name.slice(0, 2)}
+          {member!.name}
         </text>
       )}
     </g>
@@ -181,7 +233,7 @@ function Seat({
 
 function EmptyHint() {
   return (
-    <div className="grid min-h-[280px] place-items-center text-sm text-[var(--muted-foreground)]">
+    <div className="grid min-h-[280px] place-items-center text-sm text-muted-foreground">
       <p className="text-center">テーブル数と人数を選択してください</p>
     </div>
   );

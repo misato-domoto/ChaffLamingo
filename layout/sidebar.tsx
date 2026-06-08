@@ -122,7 +122,7 @@ export function Sidebar() {
           "relative z-10 grid h-12 w-12 place-items-center rounded-xl transition-colors",
           // active 時はつまみのへこみ上にアイコンが乗るので、視認性のため濃色に
           isActive
-            ? "text-[var(--foreground)]"
+            ? "text-foreground"
             : "text-white/85 hover:text-white",
         )}
       >

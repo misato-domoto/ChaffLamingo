@@ -1,0 +1,386 @@
+{
+  "name": "社員旅行宴会",
+  "isFavorite": false,
+  "tables": [
+    {
+      "id": "d2be1ff0-03c8-4df4-8d94-8c1c02e7d541",
+      "shape": "circle",
+      "x": 684.3333587646484,
+      "y": 250.81243896484375,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#d599ea",
+      "chairColor": "#d599ea",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "c6af1cb6-3ae7-426c-9752-1d7fc293e600",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "5d692e65-1363-45ff-aa36-1e1585c6782a",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "3f211e14-4211-4238-a2b4-a682acadd44b",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "8b62f17c-0728-4458-b01e-8da94dda0917",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "2091d919-4fad-4645-b6a7-25daece2b01d",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "6e1ba2e6-53fe-4b0f-ac85-3827b90d4160",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "d92d4c64-18e3-4831-8548-6eebd1ab759e",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Bテーブル",
+      "tableBorderColor": "#744ea2",
+      "chairBorderColor": "#744ea2",
+      "labelColor": "#3f0792"
+    },
+    {
+      "id": "63e0b41c-dd84-4b3e-a20e-0840a844fcdb",
+      "shape": "circle",
+      "x": 429.93336486816406,
+      "y": 247.6124267578125,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#ea9ab6",
+      "chairColor": "#ea9ab6",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "415fc8ff-1f84-45ce-9451-3cd949afcb76",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "fde4fe57-85a4-4ffc-ae7c-f85b9afe93a5",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "347b27f4-e5d7-4ea9-a7a1-86d38b491468",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "b093435f-e3f6-4649-a545-37f6362e5f34",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "c16fbcce-41a2-434b-afd5-ed625cb2208d",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "52a2f856-3390-4beb-b8de-927a78fca5fa",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "dfa0172d-772d-4a3a-8615-ceb33af21909",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Aテーブル",
+      "tableBorderColor": "#a24e7b",
+      "chairBorderColor": "#a24e7b",
+      "labelColor": "#920751"
+    },
+    {
+      "id": "b229b24a-2548-4dd5-b33d-3bb1937f6c11",
+      "shape": "circle",
+      "x": 939.5333709716797,
+      "y": 246.81240844726562,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#99aaea",
+      "chairColor": "#99aaea",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "f56327e8-3860-4e16-88da-cfe25affb041",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "1a703c59-f1ef-474b-8964-fa4a9ebbe7b0",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "5b20c935-f19a-4830-89e9-14d9f41d8f05",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "89272a83-e203-42db-a233-865699afdb2d",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "598210b7-a509-4c23-80b4-4114a56cb3e4",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "94e5a14b-7fdd-4080-a872-f920ea7cf93e",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "82cc4a6d-ff6d-4c3f-a9f2-37bbbb28865c",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Cテーブル",
+      "tableBorderColor": "#4e53a2",
+      "chairBorderColor": "#4e53a2",
+      "labelColor": "#072a92"
+    },
+    {
+      "id": "71be8a47-22de-4766-8dbb-c2ccff50b0c1",
+      "shape": "circle",
+      "x": 682.7333831787109,
+      "y": 679.6124420166016,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#eac999",
+      "chairColor": "#eac999",
+      "chairSizeScale": 2,
+      "chairRailGap": 6,
+      "chairs": [
+        {
+          "id": "b90f4e42-76ba-4690-81f3-af729ea5cbcf",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "0a2208a7-ee18-4b99-ae27-e9d9b9a0613b",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "32949321-a6c6-4b33-a82d-959001004aec",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "94947649-c183-4199-a2ca-98fa189626bb",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "05c22fac-a601-4447-94c9-b44ed5b2f2fe",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "111a5392-8667-4901-a82a-795262f0e382",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "a3848e68-c999-479f-b5dd-7008d778cbd7",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Gテーブル",
+      "tableBorderColor": "#a24e4e",
+      "chairBorderColor": "#a24e4e",
+      "labelColor": "#bf3d1d"
+    },
+    {
+      "id": "15fc4be9-aa3e-4f27-a4fd-f822059da207",
+      "shape": "circle",
+      "x": 428.33338928222656,
+      "y": 676.4124298095703,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#e1ea99",
+      "chairColor": "#e1ea99",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "42b65f1a-f0b7-4545-b788-fae1c3821b6f",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "0a75834f-23a7-4611-928e-90765678f559",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "71ea0df6-6342-4647-9600-3be80db23c62",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "28857313-90cf-42d6-8d31-3de11d387cff",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "ba24a001-8e99-4c48-a2ec-0b1c45c391bb",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "0cd85d81-a911-4315-97df-c12e999a4bf4",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "62b6c0c6-545d-4ff2-bb59-2e3111c41f1e",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Fテーブル",
+      "tableBorderColor": "#a27f4e",
+      "chairBorderColor": "#a27f4e",
+      "labelColor": "#926607"
+    },
+    {
+      "id": "fa4497da-65d1-4502-974e-7441718e08d9",
+      "shape": "circle",
+      "x": 937.9333953857422,
+      "y": 675.6124114990234,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#ea9999",
+      "chairColor": "#ea9999",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "cba6485c-0ec4-4971-945e-1a2374d9592f",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "852c8355-73d4-49f7-a1d1-42706a5dfc64",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "5f224115-2fca-4be6-801c-5f898f5a8c14",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "c8ff172c-27d5-4948-99b9-6defa90a0575",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "cbd19eb2-5b0c-4be5-a311-f67db4075bad",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "704b751c-fbe6-48f3-9142-6db0106afefb",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "25e531d2-eedf-43dc-b5f2-97b9f5b1fc8d",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Hテーブル",
+      "tableBorderColor": "#a24e4e",
+      "chairBorderColor": "#a24e4e",
+      "labelColor": "#a51212"
+    },
+    {
+      "id": "d133e104-7bd1-4729-aea9-a9d17ed8049d",
+      "shape": "circle",
+      "x": 556.3333587646484,
+      "y": 466.0123748779297,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#99e9ea",
+      "chairColor": "#99e9ea",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "eec5fbc8-fab2-4ee7-9adf-7bcf1d081451",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "0e42d2c9-444a-4d8d-8923-e9594c33a234",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "16c58e08-4df4-4327-83e4-48ddfd2e8e6a",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "c55d40ac-4a58-49a6-a25c-8df15e9f3f1f",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "cccd7068-2d9a-4851-8a19-2f4f1141cc1d",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "1c6a309c-4a9a-449a-816e-e7832871ca3e",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "9e3621f4-d0fa-4317-a79e-c622fbe8d65d",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Dテーブル",
+      "tableBorderColor": "#4e91a2",
+      "chairBorderColor": "#4e91a2",
+      "labelColor": "#03616d"
+    },
+    {
+      "id": "0a07cbfd-0522-4344-9d40-64fa4102f8b6",
+      "shape": "circle",
+      "x": 811.761982509068,
+      "y": 466.58377729143416,
+      "width": 119.33329264322916,
+      "height": 119.33329264322916,
+      "rotation": 0,
+      "tableColor": "#99eab4",
+      "chairColor": "#99eab4",
+      "chairSizeScale": 2,
+      "chairRailGap": 8,
+      "chairs": [
+        {
+          "id": "13eb3abd-0269-4c54-a44a-d56f9162bb58",
+          "angle": 14.215171609277624
+        },
+        {
+          "id": "ecd99ed5-7b0d-4dfb-aff5-c9354a1d2671",
+          "angle": 60.175961849900766
+        },
+        {
+          "id": "0daa7ea5-69ba-4706-ba49-f991cd5939e5",
+          "angle": 167.43288744511227
+        },
+        {
+          "id": "ca71616e-7781-434c-9d8f-45714a167465",
+          "angle": -140.21365930177222
+        },
+        {
+          "id": "6d200469-6cdd-4fd8-a4f1-944149a812af",
+          "angle": -90.3338645645299
+        },
+        {
+          "id": "7da074d0-ef0a-40cd-95bd-ea665cad49e8",
+          "angle": -33.2998337888406
+        },
+        {
+          "id": "bdfd4b48-a453-44e7-a1f4-9510e12a283b",
+          "angle": 118.50023501454908
+        }
+      ],
+      "name": "Eテーブル",
+      "tableBorderColor": "#53a24e",
+      "chairBorderColor": "#53a24e",
+      "labelColor": "#007022"
+    }
+  ],
+  "objects": [],
+  "backgroundImagePath": "/data/layouts-bg/3984d116-4b0f-447e-8baf-cbcc19f7f6ce.png",
+  "createdAt": "2026-06-01T06:11:11.815Z",
+  "updatedAt": "2026-06-05T05:06:31.691Z"
+}

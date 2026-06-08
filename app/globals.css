@@ -22,7 +22,10 @@
   --flamingo-tint: #ffeef3;
   --flamingo-deep: #d63a6f;
 
+  /* Shuffle (cyan) brand (主にメンバー/タグ管理系画面) */
   --shuffle: #4cabd8;
+  --shuffle-soft: #b8dcec;
+  --shuffle-tint: #e3f2fa;
   --shuffle-deep: #479dc5;
   --shuffle-tint: #C4E4F4;
 
@@ -48,6 +51,8 @@
   --color-flamingo-deep: var(--flamingo-deep);
 
   --color-shuffle: var(--shuffle);
+  --color-shuffle-soft: var(--shuffle-soft);
+  --color-shuffle-tint: var(--shuffle-tint);
   --color-shuffle-deep: var(--shuffle-deep);
   --color-shuffle-tint: var(--shuffle-tint);
 
