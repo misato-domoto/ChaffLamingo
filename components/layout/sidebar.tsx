@@ -33,6 +33,7 @@ import {
 } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { PaymentModal } from "./sidebar-payment";
 
 type IconProps = { className?: string; strokeWidth?: number };
 type IconComponent = React.ComponentType<IconProps>;
@@ -89,6 +90,9 @@ export function Sidebar() {
   const [knob, setKnob] = useState<{ y: number; duration: number } | null>(
     null,
   );
+
+  // ロゴ押下で開く支払い(プラン案内)モーダルの開閉状態。
+  const [isPaymentOpen, setIsPaymentOpen] = useState(false);
 
   useEffect(() => {
     const update = () => {
@@ -185,10 +189,13 @@ export function Sidebar() {
         />
       </div>
 
-      {/* ロゴ */}
-      <div className="relative z-10 mb-8 grid h-12 w-12 place-items-center rounded-xl bg-white/95 shadow-sm">
+      {/* ロゴ: 押下するとプラン案内(支払い)モーダルを開く */}
+      <div
+        onClick={() => setIsPaymentOpen(true)}
+        className="relative z-10 mb-8 grid h-12 w-12 place-items-center rounded-xl bg-white/95 shadow-sm"
+      >
         <Image
-          src="/next.svg"
+          src="/icons/logo.png"
           alt="ChaffLamingo"
           width={28}
           height={28}
@@ -207,6 +214,9 @@ export function Sidebar() {
       <nav className="flex flex-col items-center gap-6">
         {BOTTOM_ITEMS.map(renderItem)}
       </nav>
+      {isPaymentOpen && (
+        <PaymentModal onClose={() => setIsPaymentOpen(false)} />
+      )}
     </aside>
   );
 }

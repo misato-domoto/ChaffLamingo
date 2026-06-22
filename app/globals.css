@@ -69,3 +69,41 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
 }
+
+/* ===== 虹色ボーダー ===== */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-rainbow {
+  to { --angle: 360deg; }
+}
+
+.rainbow-border {
+  isolation: isolate;
+}
+
+.rainbow-border::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: calc(var(--radius) + 3px);
+  background: linear-gradient(
+    var(--angle),
+    #ff0000, #ff7700, #ffff00,
+    #00ff00, #0000ff, #8b00ff, #ff0000
+  );
+  z-index: -1;
+  animation: spin-rainbow 4s linear infinite;
+}
+
+.rainbow-border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: var(--card);
+  z-index: -1;
+}
