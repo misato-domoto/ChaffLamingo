@@ -176,29 +176,29 @@ const selectedIds = useMemo(() => {
 
   // ── 描画 ───────────────────────────────────────────────────────
   return (
-    <main className="px-4 py-4 sm:px-8 sm:py-6">
+    <main className="h-screen overflow-hidden sm:px-2 sm:py-6">
       <h1 className="mb-4 text-xl font-bold text-flamingo">
         クイックシャッフル画面
       </h1>
 
       {/* 上段: Canvas (左、伸縮) + メンバーリスト (右、固定幅) */}
       <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
-        <Card className="relative min-h-105 py-8">
-          <CardContent className="px-8">
-            <div className="mb-4 flex flex-wrap items-center gap-3 text-base font-bold text-flamingo">
+        <Card className="h-[calc(100vh-200px)] py-4">
+          <CardContent className="px-6">
+            <div className="mb-2 flex flex-wrap items-center gap-3 text-base font-bold text-flamingo">
               <span>
                 {seatedCount} / {totalSelectedCount} 人
               </span>
               {/* タグ絞り込み中: シャッフル対象が制限されていることを明示 */}
               {isFilterActive && (
                 <span className="text-xs font-medium text-muted-foreground">
-                  (タグ絞り込み中: {shufflableCount} 人がシャッフル対象)
+                  (タグ絞り込み中: {shufflableCount}人がシャッフル対象)
                 </span>
               )}
               {/* シャッフル後のはみ出し警告 */}
               {assignments.length > 0 && seatedCount < shufflableCount && (
                 <span className="text-xs font-medium text-muted-foreground">
-                  ({shufflableCount - seatedCount} 人がはみ出しています)
+                  ({shufflableCount - seatedCount}人がはみ出しています)
                 </span>
               )}
             </div>
@@ -206,7 +206,7 @@ const selectedIds = useMemo(() => {
           </CardContent>
         </Card>
 
-        <div className="lg:pt-2">
+        <div>
           <MemberList
             members={filteredMembers}
             selectedIds={selectedIds}
@@ -222,7 +222,7 @@ const selectedIds = useMemo(() => {
       </div>
 
       {/* 下段: 操作パネル */}
-      <div className="mt-8">
+      <div className="mt-1">
         <ShuffleControls
           perTable={perTable}
           onPerTableChange={setPerTable}

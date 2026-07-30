@@ -394,15 +394,15 @@ export function ShuffleScreen({ members, tags, layouts }: Props) {
 
   // ── 描画 ───────────────────────────────────────────────────────
   return (
-    <main className="px-4 py-4 sm:px-8 sm:py-6">
+    <main className="px-4 py-4 sm:px-2 sm:py-6">
       <h1 className="mb-4 text-xl font-bold text-shuffle">
         シャッフル画面
       </h1>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
         {/* 左: Canvas */}
-        <Card className="relative min-h-105 py-6.5">
-          <CardContent className="px-8">
+        <Card className="h-[calc(100vh-200px)] py-4">
+          <CardContent className="px-6">
             <div className="mb-4 flex flex-wrap items-center gap-3 text-base font-bold text-shuffle">
               <span>{selectedCount} 人選択中</span>
               {pinnedIds.size > 0 && (
@@ -469,10 +469,9 @@ export function ShuffleScreen({ members, tags, layouts }: Props) {
               </div>
             </div>
 
-            {/* レイアウト可視化エリア (16:10 で横長、Canvas のフル幅) */}
+            {/* レイアウト可視化エリア */}
             <div
-              className="w-full rounded-2xl bg-(--shuffle-tint)/40"
-              style={{ aspectRatio: "16 / 10" }}
+              className="w-full h-[calc(100vh-300px)] rounded-2xl bg-(--shuffle-tint)/40"
             >
               {selectedLayout ? (
                 <LayoutCanvas
@@ -501,7 +500,7 @@ export function ShuffleScreen({ members, tags, layouts }: Props) {
           </CardContent>
         </Card>
 
-        <div className="flex flex-col gap-4 lg:pt-2">
+        <div className="flex flex-col gap-2">
           <MemberList
             members={filteredMembers}
             selectedIds={selectedIds}
@@ -522,9 +521,8 @@ export function ShuffleScreen({ members, tags, layouts }: Props) {
               type="button"
               onClick={handleShuffle}
               disabled={!selectedLayout || shufflablePool.length === 0}
-              className="ml-auto h-32 w-32 place-items-center rounded-full bg-shuffle text-center leading-tight text-white shadow-lg shadow-(--shuffle)/30 transition-colors hover:bg-shuffle-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--shuffle)/30 disabled:cursor-not-allowed disabled:shadow-none"
+              className="ml-auto h-28 w-28 place-items-center rounded-full bg-shuffle text-center leading-tight text-white shadow-lg shadow-(--shuffle)/30 transition-colors hover:bg-shuffle-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--shuffle)/30 disabled:cursor-not-allowed disabled:shadow-none"
             >
-              <ShuffleIcon className="h-6 w-6" />
               <span className="text-base font-bold">シャッフル</span>
             </button>
           </div>
