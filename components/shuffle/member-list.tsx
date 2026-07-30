@@ -94,9 +94,9 @@ export function MemberList({
   };
 
   return (
-    <Card className="p-4">
-          <CardContent className="p-0">
-    <div className="flex w-full flex-col gap-3">
+    <Card>
+          <CardContent className="px-4">
+    <div className="h-[calc(100vh-248px)] flex w-full flex-col gap-3">
       {/* 検索 + タグ絞り込みボタン */}
       <div className="flex items-center gap-2">
         <label className="flex h-10 flex-1 items-center gap-2 rounded-full border border-flamingo-soft bg-white px-4 text-sm text-muted-foreground">
@@ -136,7 +136,7 @@ export function MemberList({
       </div>
 
       {/* メンバーリスト */}
-      <ul className="flex max-h-110 flex-col gap-3 overflow-y-auto">
+      <ul className="flex flex-col gap-3 overflow-y-auto">
         {members.length === 0 ? (
           <li className="px-1 text-sm text-muted-foreground">
             {filterTagIds.size > 0 || search.length > 0
@@ -179,7 +179,7 @@ export function MemberList({
           <div className="rounded-xl bg-linear-to-br from-flamingo via-flamingo-soft to-shuffle p-1">
             <div className="rounded-xl bg-white px-6 py-4">
               <DialogHeader>
-                <DialogTitle className="mb-5 text-center text-xl font-bold text-flamingo">
+                <DialogTitle className="mb-4 text-center text-xl font-bold text-flamingo">
                   タグで絞り込み
                 </DialogTitle>
               </DialogHeader>

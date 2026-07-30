@@ -47,7 +47,7 @@ export function ShuffleControls({
     <div className="flex flex-wrap items-center gap-6">
       {/* 1テーブルあたりの人数 */}
       <div className="flex flex-col gap-2">
-        <span className="mb-2 text-base font-semibold text-flamingo">
+        <span className="mb-0 text-base font-semibold text-flamingo">
           1テーブルあたりの人数
         </span>
         <Card className="gap-0 py-3">
@@ -68,7 +68,7 @@ export function ShuffleControls({
 
       {/* テーブル数 (= 何卓に分けるか) */}
       <div className="flex flex-col gap-2">
-        <span className="mb-2 text-base font-semibold text-flamingo">
+        <span className="mb-0 text-base font-semibold text-flamingo">
           テーブル数
         </span>
         <Card className="gap-0 py-3">
@@ -95,7 +95,7 @@ export function ShuffleControls({
         type="button"
         onClick={onShuffle}
         disabled={!canShuffle}
-        className="ml-auto grid h-32 w-32 place-items-center rounded-full bg-flamingo text-center text-base font-bold leading-tight text-white shadow-lg shadow-(--flamingo)/30 transition-colors hover:bg-flamingo-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--flamingo)/30 disabled:cursor-not-allowed disabled:bg-flamingo-soft disabled:shadow-none"
+        className="mt-1 ml-auto grid h-28 w-28 place-items-center rounded-full bg-flamingo text-center text-base font-bold leading-tight text-white shadow-lg shadow-(--flamingo)/30 transition-colors hover:bg-flamingo-deep focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-(--flamingo)/30 disabled:cursor-not-allowed disabled:bg-flamingo-soft disabled:shadow-none"
       >
         クイック
         <br />

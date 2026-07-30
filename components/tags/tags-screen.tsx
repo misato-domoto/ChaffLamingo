@@ -16,7 +16,7 @@
  */
 
 import { useState, useTransition } from "react";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2, Plus } from "lucide-react";
 
 import {
   Dialog,
@@ -32,7 +32,7 @@ import { deleteTag, saveTag, setTagMembers } from "@/lib/data";
 import type { Member, Tag } from "@/lib/types";
 
 type Props = {
-  tags: Tag[];
+   tags: Tag[];
   members: Member[];
 };
 
@@ -113,27 +113,36 @@ export function TagsScreen({ tags, members }: Props) {
   };
 
   return (
-    <main className="px-4 py-4 sm:px-8 sm:py-6">
+    <main className="h-screen sm:px-2 sm:py-6">
       <h1 className="mb-4 flex items-center gap-3 text-xl font-bold text-shuffle">
         タグ一覧
-        <button
-          type="button"
-          onClick={() => openEdit(null)}
-          className="ml-auto rounded-full bg-shuffle px-4 py-1 text-base font-bold text-white transition-colors hover:bg-shuffle-deep"
-        >
-          タグ追加
-        </button>
       </h1>
 
       {/* タグ一覧 (タグ風 clip-path のカードを並べる) */}
       {tags.length === 0 ? (
-        <Card className="p-8">
-          <CardContent className="p-0 text-center text-sm text-muted-foreground">
-            まだタグが登録されていません。「タグ追加」から作成してください。
-          </CardContent>
-        </Card>
+        <div>
+          <Card className="p-8 mb-5">
+            <CardContent className="p-0 text-center text-sm text-muted-foreground">
+              まだタグが登録されていません。「＋」から作成してください。
+            </CardContent>
+          </Card>
+          <Card
+            className="relative h-41 w-85 rounded-none [clip-path:polygon(0_0,80%_0,100%_50%,80%_100%,0_100%)]"
+            onClick={() => openEdit(null)}>
+            <CardContent className="absolute top-[40%] left-[40%] p-0">
+              <Plus className="h-10 w-10 text-muted-foreground" />
+            </CardContent>
+          </Card>
+        </div>
       ) : (
         <div className="flex flex-wrap items-center gap-6">
+          <Card
+            className="relative h-41 w-85 rounded-none [clip-path:polygon(0_0,80%_0,100%_50%,80%_100%,0_100%)]"
+            onClick={() => openEdit(null)}>
+            <CardContent className="absolute top-[40%] left-[40%] p-0">
+              <Plus className="h-10 w-10 text-muted-foreground" />
+            </CardContent>
+          </Card>
           {tags.map((tag) => {
             const count = countByTag.get(tag.id) ?? 0;
             return (

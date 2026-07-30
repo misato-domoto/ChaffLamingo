@@ -1,6 +1,6 @@
 {
   "name": "1",
-  "isFavorite": false,
+  "isFavorite": true,
   "tables": [
     {
       "id": "5ad0f933-98cc-4476-a015-c2922f140316",
@@ -28,5 +28,5 @@
   ],
   "objects": [],
   "createdAt": "2026-06-02T05:39:03.285Z",
-  "updatedAt": "2026-06-02T05:39:03.285Z"
+  "updatedAt": "2026-07-26T10:11:08.049Z"
 }

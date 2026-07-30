@@ -242,14 +242,14 @@ export function MembersScreen({ members, tags }: Props) {
   };
 
   return (
-    <main className="px-4 py-4 sm:px-8 sm:py-6">
+    <main className="h-screen overflow-hidden sm:px-2 sm:py-6">
       <h1 className="mb-4 text-xl font-bold text-shuffle">
         メンバー登録・編集
       </h1>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
         {/* ──────── 左: 編集フォーム (新デザイン) ──────── */}
-        <Card className="relative min-h-105 py-6.5">
+        <Card className="h-[calc(100vh-90px)] py-4">
           <CardContent className="flex h-full flex-col px-8">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex items-center gap-4">
@@ -397,7 +397,7 @@ export function MembersScreen({ members, tags }: Props) {
         </Card>
 
         {/* ──────── 右: メンバー一覧 ──────── */}
-        <Card className="p-4">
+        <Card className="h-[calc(100vh-90px)] p-4">
           <CardContent className="p-0">
             <div className="mb-3 flex items-center gap-2">
               <label className="flex h-10 flex-1 items-center gap-2 rounded-full border border-shuffle-soft bg-white px-3 text-sm text-muted-foreground">
@@ -464,7 +464,7 @@ export function MembersScreen({ members, tags }: Props) {
               />
             </div>
 
-            <ul className="flex max-h-105 flex-col gap-1 overflow-y-auto">
+            <ul className="flex max-h-[calc(100vh-250px)] flex-col gap-1 overflow-y-auto">
               {filteredMembers.length === 0 ? (
                 <li className="px-2 py-3 text-sm text-muted-foreground">
                   {members.length === 0

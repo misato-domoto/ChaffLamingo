@@ -1051,7 +1051,7 @@ export default function SeatLayoutEditor({ initialLayout = null }: Props = {}) {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-background p-5 text-foreground">
+    <div className="h-screen overflow-hidden bg-background sm:px-2 sm:py-6 text-foreground">
       <h1 className="text-xl font-bold text-shuffle">座席レイアウト</h1>
 
       <div className="mt-4 flex h-[calc(100vh-76px)] gap-5">

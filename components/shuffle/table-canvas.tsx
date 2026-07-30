@@ -46,7 +46,7 @@ export function TableCanvas({ tables, perTable }: Props) {
       style={{ aspectRatio: "5 / 4" }}
     >
       <div
-        className="grid h-full w-full gap-3"
+        className="grid h-[calc(100vh-260px)] w-full gap-3"
         style={{
           gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
           gridTemplateRows: `repeat(${rows}, minmax(0, 1fr))`,

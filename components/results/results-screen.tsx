@@ -71,7 +71,7 @@ export function ResultsScreen({ results }: Props) {
   };
 
   return (
-    <main className="px-4 py-4 sm:px-8 sm:py-6">
+    <main className="h-screen sm:px-2 sm:py-6">
       <h1 className="mb-4 flex gap-3 text-xl font-bold text-shuffle">
         シャッフル結果一覧
       </h1>
